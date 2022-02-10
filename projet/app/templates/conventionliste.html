@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+   {% block content %}
+   <div class="wrapper">
+    <a href="{% url 'addConvention' %}"><button class="button-add"><span>Ajouter Convention</span></button>
+    </a>
+  </div>
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Liste Des Conventions
+                            </div>
+                            <div>
+                                <table id="datatablesSimple">
+                                    <thead> 
+                                          <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Stage</th>
+                                            
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Stage</th>
+                                            
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                      {% for list in list %}
+                                      <tr>
+                                        
+                                        <td>{{list.id_convention}}</td>
+                                        <td>{{list.numStage}}</td>
+                                        
+                                        <td><form action="{% url 'deleteConvention' list.id_convention  %}" method="post" >
+                                            {%csrf_token%}
+                                            <button type="submit" style="outline: none;background-color: transparent;border:none;"><span><i class="fas fa-trash" style="color: brown;"></i></span></button>
+                                            </form>
+                                         </td>
+                                       <td><a href="{% url 'updateConvention' list.id_convention %}" ><span><i class="fas fa-edit" style="color: cadetblue;"></i></span></a></td>  
+                                     </tr>  
+                                                                         
+                                     {% endfor %}
+                                       
+      
+                                    </tbody>
+                                </table>
+                            </div>
+                  {% endblock %}

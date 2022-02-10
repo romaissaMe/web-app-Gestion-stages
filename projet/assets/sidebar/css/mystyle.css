@@ -1,0 +1,274 @@
+body{
+    font-family:'Roboto',sans-serif;
+    background-image: linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%);
+}
+*{
+    list-style: none;
+    text-decoration: none;
+}
+ul li a{
+    list-style: none;
+    text-decoration: none;
+}
+.sidebar{
+    position: fixed;
+    left: -200;
+    width: 200px;
+    height: 100%;
+    background-image: linear-gradient(to top, #5f72bd 0%, #9b23ea 100%);
+    line-height: 50px;
+    color: #e3dee4;
+    transition: all .5s ease;
+    overflow: auto;
+}
+.sidebar h1{
+    text-align: center;
+    
+}
+.sidebar h1 a {
+    color: #e3dee4;
+    user-select: none;
+    text-align: center;
+
+} 
+.sidebar ul{
+    margin-top: 27px;
+}
+.sidebar ul li a {
+    display: block;
+    width: 100%;
+    line-height: 50px;
+    font-size: 17px;
+    box-sizing: border-box;
+    transition:.4s;
+    cursor: pointer;
+    
+}
+.sidebar ul li{
+    margin-left: 0px;
+    margin-right: 20px;
+}
+ul li:hover a{
+    padding-left: 50px;
+}
+.sidebar ul li a span{
+    margin-right: 10px;
+    margin-bottom: auto;
+}
+
+#check{
+    display: none;
+
+}
+#labels{
+    position: absolute;
+}
+#labels #btn,label #cancel{
+    position: absolute;
+    cursor: pointer;
+    top: 25px;
+    font-size: 35px;
+    border-radius: 3px;
+   
+}
+
+#labels #btn{
+    left:60px;
+    font-size: 25px;
+    padding: 6px 12px;
+    background-image: linear-gradient(to top, #5f72bd 0%, #9b23ea 100%);
+    color:#e3dee4;
+    transition: all .5s;
+    top: 9px;
+}
+#labels #cancel{
+    z-index: 1111;
+    left: -162px;
+    top: 2px;
+    font-size: 25px;
+    color:#741088;
+    padding: 4px 9px;
+    transition: all .5s ease;
+}
+
+#check:checked ~ .sidebar{
+    left: 0;
+}
+#check:checked ~ #labels #btn{
+    left: 200px;
+    opacity: 0;
+    pointer-events: none;
+}  
+
+#check:checked ~ #labels #cancel{
+  top: 0px;
+ left: 153px;
+
+}
+#check:checked ~ section{
+    margin-left: 200px;
+}  
+
+section{
+    height: 100vh;
+    transition: all .5s;
+}
+.footer{
+    text-align: center;
+    font-size: 10px;
+}
+              /*bouton deconnecter*/
+.buttonad{
+    width:150px;
+    height:40px;
+    background-color: #f977ce;
+    background-image: linear-gradient(to top, #5f72bd 0%, #9b23ea 100%);
+    border-style: none;
+    color:#e3dee4;
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-family: 'Lato';
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    padding: 0px;
+    overflow: hidden;
+    transition: all .5s;
+    box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+  }
+  .buttonad span{
+    position: absolute;
+    display: block;
+  }
+  .buttonad span:nth-child(1){
+    height: 3px;
+    width:200px;
+    top:0px;
+    left:-200px;
+    background: linear-gradient(315deg, #f977ce 0%, #c373f2 74%); 
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span1 2s linear infinite;
+    animation-delay: 1s;
+  }
+  
+  @keyframes span1{
+    0%{
+        left:-200px
+    }
+    100%{
+        left:200px;
+    }
+  }
+  .buttonad span:nth-child(2){
+    height: 70px;
+    width: 3px;
+    top:-70px;
+    right:0px;
+    background: linear-gradient(315deg, #f977ce 0%, #c373f2 74%); 
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span2 2s linear infinite;
+    animation-delay: 2s;
+  }
+  @keyframes span2{
+    0%{
+        top:-70px;
+    }
+    100%{
+        top:70px;
+    }
+  }
+  .buttonad span:nth-child(3){
+    height:3px;
+    width:200px;
+    right:-200px;
+    bottom: 0px;
+    background: linear-gradient(315deg, #f977ce 0%, #c373f2 74%); 
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px;
+    animation: span3 2s linear infinite;
+    animation-delay: 3s;
+  }
+  @keyframes span3{
+    0%{
+        right:-200px;
+    }
+    100%{
+        right: 200px;
+    }
+  }
+  
+  .buttonad span:nth-child(4){
+    height:70px;
+    width:3px;
+    bottom:-70px;
+    left:0px;
+    background: linear-gradient(to top, rgba(0,0,0,0), #f6e58d);
+    border-top-right-radius: 1px;
+    border-top-left-radius: 1px;
+    animation: span4 2s linear infinite;
+    animation-delay: 4s;
+  }
+  @keyframes span4{
+    0%{
+        bottom: -70px;
+    }
+    100%{
+        bottom:70px;
+    }
+  }
+  
+  .buttonad:hover{
+    transition: all .5s;
+    transform: scale(1.1);
+    box-shadow: 0px 3px 5px rgba(0,0,0,.4);
+  }
+  .buttonad:hover span{
+    animation-play-state: paused;
+  }
+                                     /*bouton ajouter*/
+  .button-add {
+    border-radius: 4px;
+    background-color: #f977ce;
+    background-image: linear-gradient(to top, #5f72bd 0%, #9b23ea 100%);
+    border: none;
+    color: #e3dee4;
+    font-family: 'Lato';
+    text-align: center;
+    font-size: 20px;
+    padding: 10px;
+    width: 300px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+  }
+  
+  .button-add{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  .button-add:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;  
+    top: 14px;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .button-add:hover{
+    padding-right: 24px;
+    padding-left:8px;
+  }
+  
+  .button-add:hover:after {
+    opacity: 1;
+    right: 10px;
+  }

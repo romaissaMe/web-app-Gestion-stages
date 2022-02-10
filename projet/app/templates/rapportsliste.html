@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+   {% block content %}
+   <div class="wrapper">
+    <a href="{% url 'addRapport' %}"><button class="button-add"><span>Ajouter Rapport</span></button>
+    </a>
+  </div>
+
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Liste Des Rapports
+                            </div>
+                            <div>
+                                <table id="datatablesSimple">
+                                    <thead> 
+                                          <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Titre</th>
+                                            <th scope="col">Nombre de pages </th>
+                                            <th scope="col">Stage </th>
+                                            
+
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Titre</th>
+                                            <th scope="col">Nombre de pages </th>
+                                            <th scope="col">Stage </th>
+                                            <th scope="col">Pdf </th>
+  
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                      {% for list in list %}
+                                      <tr>
+                                        <td>{{list.id_rapport}}</td>
+                                        <td>{{list.titre}}</td>
+                                        <td>{{list.nbrpages}}</td>
+                                        <td>{{list.stage}}</td>
+                                        <td>
+                                            <a href="" class="btn buttonad btn-sm"></a>
+                                        </td>
+                                        <td><form action="{% url 'deleteRapport' list.id_rapport  %}" method="post" >
+                                            {%csrf_token%}
+                                            <button type="submit" style="outline: none;background-color: transparent;border:none;"><span><i class="fas fa-trash" style="color: brown;"></i></span></button>
+                                       </form>
+                                       </td>
+                                     <td><a href="{% url 'updateRapport' list.id_rapport  %}"><span><i class="fas fa-edit" style="color: cadetblue;"></i></span></a></td>
+
+                                     </tr>  
+                                     
+                                      
+                                     {% endfor %}
+                                       
+      
+                                    </tbody>
+                                </table>
+                            </div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+   {% block content %}
+   <div class="wrapper">
+    <a href="{% url 'addEncadreur' %}"><button class="button-add"><span>Ajouter Encadrant</span></button>
+    </a>
+  </div>
+                       
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Liste Des Encadreurs
+                            </div>
+                            <div>
+                                <table id="datatablesSimple">
+                                    <thead> 
+                                          <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Nom </th>
+                                            <th scope="col">Prenom </th>
+                                            <th scope="col"> N° tel</th>
+                                            <th scope="col"> Email</th>
+                                            
+
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Nom </th>
+                                            <th scope="col">Prenom </th>
+                                            <th scope="col"> N° tel</th>
+                                            <th scope="col"> Email</th>
+                                            
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                      {% for list in list %}
+                                      <tr>
+                                        
+                                        <td>{{list.id_encadreur}}</td>
+                                        <td>{{list.nom_encad}}</td>
+                                        <td>{{list.prenom_encad}}</td>
+                                        <td>{{list.numtel_encad}}</td>
+                                        <td>{{list.email_encad}}</td>
+                                        <td>
+                                            {% for encad in list.stage_encad.all %}
+                                            {{encad.code}}
+                                            {% endfor %}
+                                        </td>
+                                        <td><form action="{% url 'deleteEncadreur' list.id_encadreur  %}" method="post" >
+                                            {%csrf_token%}
+                                            <button type="submit" style="outline: none;background-color: transparent;border:none;"><span><i class="fas fa-trash" style="color: brown;"></i></span></button>
+                                        
+                                       </form>
+                                       </td>
+                                     <td><a href="{% url 'updateEncadreur' list.id_encadreur  %}" ><span><i class="fas fa-edit" style="color: cadetblue;"></i></span></a></td>
+                                     
+
+                                     </tr>  
+                                     
+                                     {% endfor %}
+                                       
+      
+                                    </tbody>
+                                </table>
+                            </div>
+                         
+                          
+  {% endblock %}             

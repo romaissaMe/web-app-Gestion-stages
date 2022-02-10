@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+   {% block content %} 
+   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<div class="container-fluid">
+   <div class="row mt-1 pt-1">
+    <div class="">
+        <form action="" method="post">
+           {%csrf_token%}
+           <input type="text" name="search" placeholder="2020/2021">
+           <button type="submit" class="btn buttonad" style="color: rgba(220, 208, 197, 0.918);">chercher</button>
+        </form>
+    </div>
+  </div> 
+    <div class="container">
+     <div class="row " style="margin: 0%;padding: 0%;">
+        <div class="col-4">
+            <div class="card">  
+                <div class="card-body">
+                     <h6 class="card-title" >Répartition des PFE / entreprise</h6>  
+                    <canvas id="myChart" width="400" height="300"></canvas>
+                 
+                 <script>
+                     var ctx = document.getElementById('myChart').getContext('2d');
+                     var myChart = new Chart(ctx, {
+                         type: 'pie',
+                         data: {
+                             labels: {{labels|safe}},
+                     datasets: [{
+                         label: '',
+                         data: {{data|safe}},
+                         backgroundColor: [
+               'rgba(255, 99, 132, 0.2)',
+               'rgba(255, 159, 64, 0.2)',
+               'rgba(255, 205, 86, 0.2)',
+               'rgba(75, 192, 192, 0.2)',
+               'rgba(54, 162, 235, 0.2)',
+               'rgba(153, 102, 255, 0.2)',
+               'rgba(201, 203, 207, 0.2)'
+             ],
+             borderColor: [
+               'rgb(255, 99, 132)',
+               'rgb(255, 159, 64)',
+               'rgb(255, 205, 86)',
+               'rgb(75, 192, 192)',
+               'rgb(54, 162, 235)',
+               'rgb(153, 102, 255)',
+               'rgb(201, 203, 207)'
+             ],
+             borderWidth: 1
+             }]
+                         },
+                     options: {
+                         scales: {
+                             yAxes: [{
+                                 ticks: {
+                                     beginAtZero: true
+                                 }
+                             }]
+                         }
+                     }
+                     });
+                 </script>
+             </div>
+             </div>
+        </div>
+        <div class="col-4">
+            <div class="card " style="max-height: 100%;">
+                <div class="card-body">
+                  <h6 class="card-title">Etat de classement des organismes partenaires professionnels de l'ESI sur la base du nombre de stagiaires retenus</h6>
+                  <canvas id="myChart2" width="400" height="300"></canvas>
+            <script>
+                var ctx = document.getElementById('myChart2').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: {{labels|safe}},
+                datasets: [{
+                    label: "",
+                    data: {{data2|safe}},
+                    backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 205, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(201, 203, 207, 0.2)'
+        ],
+        borderColor: [
+          'rgb(255, 99, 132)',
+          'rgb(255, 159, 64)',
+          'rgb(255, 205, 86)',
+          'rgb(75, 192, 192)',
+          'rgb(54, 162, 235)',
+          'rgb(153, 102, 255)',
+          'rgb(201, 203, 207)'
+        ],
+        borderWidth: 1
+        }]
+                    },
+                options: {
+                    
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                    
+                }
+                });
+            </script>
+                </div>
+              </div>
+        </div>
+        <div class="col-4 mt-0">
+            <div class="card"> 
+                <div class="card-body"> 
+                    <h6 class="card-title">Taux d'évolution du nombre d'organismes ayant reçus des stagiaires PFE</h6>
+                     
+                     <canvas id="myChart3" width="400" height="300"></canvas>
+                       <script>
+                       var ctx = document.getElementById('myChart3').getContext('2d');
+                       var myChart = new Chart(ctx, {
+                           type: 'doughnut',
+                           data: {
+                               labels: {{labels3|safe}},
+                       datasets: [{
+                           label: '# of Votes',
+                           data: {{data3|safe}},
+                           backgroundColor: [
+                 'rgba(255, 99, 132, 0.2)',
+                 'rgba(255, 159, 64, 0.2)',
+                 'rgba(255, 205, 86, 0.2)',
+                 'rgba(75, 192, 192, 0.2)',
+                 'rgba(54, 162, 235, 0.2)',
+                 'rgba(153, 102, 255, 0.2)',
+                 'rgba(201, 203, 207, 0.2)'
+               ],
+               borderColor: [
+                 'rgb(255, 99, 132)',
+                 'rgb(255, 159, 64)',
+                 'rgb(255, 205, 86)',
+                 'rgb(75, 192, 192)',
+                 'rgb(54, 162, 235)',
+                 'rgb(153, 102, 255)',
+                 'rgb(201, 203, 207)'
+               ],
+               borderWidth: 1
+               }]
+                           },
+                       options: {
+                           scales: {
+                               yAxes: [{
+                                   ticks: {
+                                       beginAtZero: true
+                                   }
+                               }]
+                           }
+                       }
+                       });
+                   </script>
+                 </div>
+               </div>
+        </div>
+      </div>
+      <div class="row no-gutters">
+       
+     </div>
+    </div> 
+</div>
+   
+
+
+
+
+
+   {% endblock %}

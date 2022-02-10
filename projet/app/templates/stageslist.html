@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+   {% block content %}
+   <div class="wrapper">
+    <a href="{% url 'addStage' %}"><button class="button-add"><span>Ajouter Stage</span></button>
+    </a>
+  </div>
+
+                    
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Table des Stages {{a3}}
+                            </div>
+                            <div class="container-fluid">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr> 
+                                            
+                                            <th scope="col">code</th>
+                                            <th scope="col">titre</th>
+                                            <th scope="col">type</th>
+                                            <th scope="col">description</th>
+                                            <th scope="col">entreprise</th>
+                                            <th scope="col">stagiaires</th>
+                                            <th scope="col">anne</th>
+                                            <th scope="col">Convention</th>
+                                            <th scope="col">Encadreurs</th>
+                                            <th scope="col">Promoteurs</th>
+                                            <th scope="col">Id_soutenance</th>
+                                            <th scope="col">Mention</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                          <th scope="col">code</th>
+                                          <th scope="col">titre</th>
+                                          <th scope="col">type</th>
+                                          <th scope="col">description</th>
+                                          <th scope="col">entreprise</th>
+                                          <th scope="col">stagiaires</th>
+                                          <th scope="col">anne</th>
+                                          <th scope="col">Convention</th>
+                                          <th scope="col">Encadreurs</th>
+                                          <th scope="col">Promoteurs</th>
+                                          <th scope="col">Id_soutenance</th>
+                                            <th scope="col">Mention</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                     {% for stages in stage %}
+                                      <tr>
+                                        <td>{{stages.code}}</td>
+                                        <td>{{stages.titre}}</td>
+                                        <td>{{stages.type}}</td>
+                                        <td>{{stages.description}}</td>
+                                        <td>{{stages.entreprise}}</td>
+                                        <td>
+                                          {% for stg in stages.stagiaires.all %}
+                                          <a style="color:purple;" href="{% url 'afficherStagiaire' %}">{{stg.matricule}}</a> 
+                                           {% endfor %}
+                                        </td>
+                                        <td>{{stages.annee}}</td>
+                                        <td>{{stages.Convention}}</td>
+                                         <td>
+                                             {{stages.encadreurs}}
+                                         </td>
+                                         <td>{{stages.promoteurs}}</td>
+                                         <td>{{stages.Id_soutenance}}</td>
+                                         <td>{{stages.mention}}</td>
+                                         
+
+                                         <td><form action="{% url 'deleteStage' stages.code  %}" method="post" >
+                                            {%csrf_token%}
+                                           <button type="submit" style="outline: none;background-color: transparent;border:none;"><span><i class="fas fa-trash" style="color: brown;"></i></span></button>
+                                          </form>
+                                         </td>
+                                        <td><a href="{% url 'updateStage' stages.code %}" > <span><i class="fas fa-edit" style="color: cadetblue;"></i></span></a></td>
+                                     
+                                        </tr>
+                                     {% endfor %}
+                                       
+      
+                                    </tbody>
+                                </table>
+                            </div>
+ {% endblock %} 

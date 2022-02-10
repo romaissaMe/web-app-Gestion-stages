@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+   {% block content %}
+   <div class="wrapper">
+    <a href="{% url 'addFicheEval' %}"><button class="button-add"><span>Ajouter Une Fiche</span></button>
+    </a>
+  </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Liste Des Fiches Evaluations
+                            </div>
+                            <div>
+                                <table id="datatablesSimple">
+                                    <thead> 
+                                          <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Stage</th>
+                                            <th scope="col">Remarques</th>
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Stage</th>
+                                            <th scope="col">Remarques</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                      {% for list in list %}
+                                      <tr>
+                                        
+                                        <td>{{list.id_ficheEvaluation}}</td>
+                                        <td>{{list.Stage}}</td>
+                                        <td>{{list.remarques}}</td>
+                                        <td><form action="{% url 'deleteFicheEval' list.id_ficheEvaluation  %}" method="post" >
+                                            {%csrf_token%}
+                                            <button  type="submit" style="outline: none;background-color: transparent;border:none;"><span><i class="fas fa-trash" style="color: brown;"></i></span></button>
+                                         </form>
+                                         </td>
+                                          <td><a href="{% url 'updateFicheEval' list.id_ficheEvaluation  %}" ><span><i class="fas fa-edit" style="color: cadetblue;"></i></span></a></td>
+                                     </tr>  
+                                      
+                                     {% endfor %}
+                                       
+      
+                                    </tbody>
+                                </table>
+                            </div>
+                
+        {% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+   {% block content %}
+   <div class="wrapper">
+    <a href="{% url 'addStagiaire' %}"><button class="button-add"><span>Ajouter Stagiaire</span></button>
+    </a>
+  </div>
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Liste des stagiaires
+                            </div>
+                            <div class=>
+                                <table id="datatablesSimple">
+                                    <thead> 
+                                          <tr>
+                                            <th scope="col">matricule</th>
+                                            <th scope="col">nom</th>
+                                            <th scope="col">prenom</th>
+                                            <th scope="col">Date de Naissance</th>
+                                            <th scope="col">annee D'Etude</th>
+                                            <th scope="col">specialite</th>
+                                            <th scope="col">section</th>
+                                           
+                                          </tr>
+                                        
+                                    </thead>
+                                    <tfoot>
+                                      <tr>
+                                        <th scope="col">matricule</th>
+                                        <th scope="col">nom</th>
+                                        <th scope="col">prenom</th>
+                                        <td scope="col">Date DE Naissance</td>
+                                        <th scope="col">année d'étude</th>
+                                        <th scope="col">specialite</th>
+                                        <th scope="col">section</th>
+                                        
+                                      </tr>
+                                    </tfoot>
+                                    <tbody>
+                                      {% for list in list %}
+                                      <tr>
+                                        <td>{{list.matricule}}</td>
+                                        <td>{{list.nom}}</td>
+                                        <td>{{list.prenom}}</td>
+                                        <td>{{list.date_naissance}}</td>
+                                        <td>{{list.annee}}</td>
+                                        <td>{{list.specialite}}</td>
+                                        <td>{{list.section}}</td>
+                                 
+                                        <td><form action="{% url 'deleteStagiaire' list.matricule %}" method="post" >
+                                            {%csrf_token%}
+                                            <button type="submit" style="outline: none;background-color: transparent;border:none;"><span><i class="fas fa-trash" style="color: brown;"></i></span></button>
+                                       </form>
+                                        </td>
+                                        <td><a href="{% url 'updateStagiaire' list.matricule %}" ><span><i class="fas fa-edit" style="color: cadetblue;"></i></span></a></td>
+                                     
+                                     </tr>  
+                                      
+                                     {% endfor %}
+                                       
+      
+                                    </tbody>
+                                </table>
+                            </div>
+{% endblock %}                        

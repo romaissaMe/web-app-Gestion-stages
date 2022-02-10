@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+   {% block content %}
+   <div class="wrapper">
+    <a href="{% url 'addPromoteur' %}"><button class="button-add"><span>Ajouter Promoteur</span></button>
+    </a>
+  </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Liste Des Promoteurs
+                            </div>
+                            <div>
+                                <table id="datatablesSimple">
+                                    <thead> 
+                                          <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Nom </th>
+                                            <th scope="col">Prenom </th>
+                                            <th scope="col"> Email</th>
+                                            <th scope="col"> N° tel</th>
+                                            <th scope="col">Entreprise</th>
+
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Nom </th>
+                                            <th scope="col">Prenom </th>
+                                            <th scope="col"> Email</th>
+                                            <th scope="col"> N° tel</th>
+                                            <th scope="col">Entreprise</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                      {% for list in liste %}
+                                      <tr>
+                                        
+                                        <td>{{list.id_promoteur}}</td>
+                                        <td>{{list.nom_prom}}</td>
+                                        <td>{{list.prenom_prom}}</td>
+                                        <td>{{list.email_prom}}</td>
+                                        <td>{{list.numtel_prom}}</td>
+                                        <td>{{list.nom_entreprise}}</td>
+
+                                        <td><form action="{% url 'deletePromoteur' list.id_promoteur  %}" method="post" >
+                                            {%csrf_token%}
+                                            <button type="submit" style="outline: none;background-color: transparent;border:none;"><span><i class="fas fa-trash" style="color: brown;"></i></span></button>
+                                       </form>
+                                       </td>
+                                       <td><a href="{% url 'updatePromoteur' list.id_promoteur  %}" ><span><i class="fas fa-edit" style="color: cadetblue;"></i></span></a></td>
+                                     
+                                     </tr>  
+                                     
+                                     {% endfor %}
+                                       
+      
+                                    </tbody>
+                                </table>
+                            </div>
+   {% endblock %}

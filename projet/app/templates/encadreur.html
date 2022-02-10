@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+   {% block content %}
+
+             
+                <div class="container-fluid px-4">
+                      <form method="post">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <input type="submit" name="submited" value="ajouter" class="button-add">
+                    </form>
+                </div>
+             
+    
+    {% endblock %}
