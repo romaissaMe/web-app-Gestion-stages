@@ -1,3 +1,3 @@
 # web-app-Gestion-stages
-Applicatio web pour la gestions des stages 
+Application web pour la gestion des stages au niveau de l'ESI
 backend technology:Django
